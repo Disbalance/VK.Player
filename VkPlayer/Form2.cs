@@ -19,7 +19,7 @@ namespace VkPlayer
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=5067225&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.37");
+            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=ID_APP&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.37");
         }
 
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
