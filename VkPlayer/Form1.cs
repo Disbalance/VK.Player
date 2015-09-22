@@ -31,8 +31,6 @@ namespace VkPlayer
         public Form1()
         {
             InitializeComponent();
-            MethodInvoker mi = new MethodInvoker(WaitKey);
-            mi.BeginInvoke(null, null);
         }
 
         private void WaitKey()

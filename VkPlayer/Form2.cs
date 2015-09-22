@@ -30,8 +30,7 @@ namespace VkPlayer
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             toolStripStatusLabel1.Text = "Загружено";
-            try
-            {
+
                 string url = webBrowser1.Url.ToString();
                 string l = url.Split('#')[1];
                 if (l[0] == 'a')
@@ -39,11 +38,29 @@ namespace VkPlayer
                     Settings1.Default.token = l.Split('&')[0].Split('=')[1];
                     Settings1.Default.id = l.Split('=')[3];
                     Settings1.Default.auth = true;
-                    this.Close();
                 }
-            }
-            catch { }
 
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Interval = 500;
+            aTimer.Elapsed += (o, ex) => {
+                closeForm();
+                aTimer.Stop();
+            };
+            aTimer.Start();
+        }
+
+        delegate void closeFormDel();
+        void closeForm()
+        {
+            if(this.InvokeRequired)
+            {
+                var writeToLog = new closeFormDel(closeForm);
+                this.Invoke(writeToLog);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }
